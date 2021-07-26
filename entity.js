@@ -1,8 +1,6 @@
 module.exports = function(RED) {
 
     function EntityNode(config) {
-        // Artificial timeout on deployment so that all nodes can be initialized.
-        let initTimeout = 500;
         RED.nodes.createNode(this, config);
         const node = this;
         // State object. Used to merge all incoming messages (Broker and Attributes) for this Entity
