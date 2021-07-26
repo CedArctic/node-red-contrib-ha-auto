@@ -4,11 +4,10 @@ module.exports = function(RED) {
         let initTimeout = 500;
         RED.nodes.createNode(this, config);
         const node = this;
-        const msg = {
-            payload: {
-                name: this.name,
-                a_type: config.a_type
-            }
+        const msg = {attributes: {}}
+        msg["attributes"][this.name] = {
+            name: this.name,
+            a_type: config.a_type
         }
         // Send message after initial delay
         setTimeout(() => node.send(msg), initTimeout);
