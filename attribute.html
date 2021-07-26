@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  RED.nodes.registerType('attribute',{
+    category: "ha auto",
+    color: '#28b88f',
+    defaults: {
+      name: {
+        value: "",
+        required: true,
+        // Validate name: Must start with letter and only contain letters, numbers and underscores
+        validate: (name) => /^[A-Za-z][A-Za-z_0-9]*$/.test(name)
+      },
+      a_type: {
+        value: "",
+        required: true,
+        // Validate broker type: Can be MQTT, AMQP or Redis
+        validate: (type) => ["string", "float", "int", "list", "dict", "bool"].includes(type)
+      }
+    },
+    inputs:0,
+    outputs:1,
+    icon: "file.png",
+    label: function() {
+      return this.name||"attribute";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="attribute">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-a_type"><i class="fa fa-tag"></i> Type</label>
+    <select id="node-input-a_type">
+      <option value="string">String</option>
+      <option value="float">Float</option>
+      <option value="int">Integer</option>
+      <option value="list">List</option>
+      <option value="dict">Dictionary</option>
+      <option value="bool">Boolean</option>
+    </select>
+  </div>
+</script>
+
+<script type="text/html" data-help-name="attribute">
+  <p>HA-Auto Entity Attribute</p>
+</script>

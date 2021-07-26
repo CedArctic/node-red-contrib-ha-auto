@@ -14,7 +14,8 @@
   "license": "MIT",
   "node-red" : {
     "nodes": {
-      "broker": "broker.js"
+      "broker": "broker.js",
+      "attribute": "attribute.js"
     }
   }
 }
