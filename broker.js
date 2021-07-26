@@ -1,5 +1,7 @@
 module.exports = function(RED) {
     function BrokerNode(config) {
+        // Artificial timeout on deployment so that all nodes can be initialized.
+        let initTimeout = 500;
         RED.nodes.createNode(this, config);
         const node = this;
         const msg = {
@@ -14,7 +16,8 @@ module.exports = function(RED) {
                 exchange: config.exchange
             }
         }
-        node.send(msg);
+        // Send message after initial delay
+        setTimeout(() => node.send(msg), initTimeout);
     }
     RED.nodes.registerType("broker", BrokerNode);
 }
