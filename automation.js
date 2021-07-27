@@ -1,29 +1,5 @@
+const utils = require("./utils.js");
 module.exports = function(RED) {
-
-    // Functions used for deep merging JS Objects, since Object.assign() only does a shallow merge.
-    // Source: https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge
-    function isObject(item) {
-      return (item && typeof item === 'object' && !Array.isArray(item));
-    }
-
-    function mergeDeep(target, ...sources) {
-      if (!sources.length) return target;
-      const source = sources.shift();
-
-      if (isObject(target) && isObject(source)) {
-        for (const key in source) {
-          if (isObject(source[key])) {
-            if (!target[key]) Object.assign(target, { [key]: {} });
-            mergeDeep(target[key], source[key]);
-          } else {
-            Object.assign(target, { [key]: source[key] });
-          }
-        }
-      }
-
-      return mergeDeep(target, ...sources);
-    }
-
     function AutomationNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
@@ -69,7 +45,7 @@ module.exports = function(RED) {
             console.log("State", state);
             console.log("Message", msg);
 //            state = Object.assign(state, msg);
-            state = mergeDeep(state, msg);
+            state = utils.mergeDeep(state, msg);
 //            msg = state;
             // Send the message
             //console.log("Final Message", msg);
