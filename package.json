@@ -16,7 +16,8 @@
     "nodes": {
       "broker": "broker.js",
       "attribute": "attribute.js",
-      "entity": "entity.js"
+      "entity": "entity.js",
+      "automation": "automation.js"
     }
   }
 }
