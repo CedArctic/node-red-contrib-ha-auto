@@ -12,12 +12,14 @@
   ],
   "author": "CedArctic",
   "license": "MIT",
-  "node-red" : {
+  "node-red": {
     "nodes": {
       "broker": "broker.js",
       "attribute": "attribute.js",
       "entity": "entity.js",
-      "automation": "automation.js"
+      "automation": "automation.js",
+      "generate": "generate.js"
     }
-  }
+  },
+  "dependencies": {}
 }
