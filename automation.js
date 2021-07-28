@@ -42,8 +42,8 @@ module.exports = function(RED) {
             */
 
             // Update the state variable and then assign it to the msg variable
-            console.log("State", state);
-            console.log("Message", msg);
+//            console.log("State", state);
+//            console.log("Message", msg);
 //            state = Object.assign(state, msg);
             state = utils.mergeDeep(state, msg);
 //            msg = state;
