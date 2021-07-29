@@ -1,0 +1,450 @@
+[
+    {
+        "id": "2bfb88bb86f93598",
+        "type": "tab",
+        "label": "Example 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "63a67891bedc376b",
+        "type": "broker",
+        "z": "2bfb88bb86f93598",
+        "name": "downstairs_broker",
+        "host": "192.168.1.5",
+        "port": "1883",
+        "b_type": "mqtt",
+        "username": "george",
+        "password": "goergePass",
+        "db": 0,
+        "exchange": "",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "d3d71bc75c354440",
+                "13062783dff1bed5",
+                "01a5c4a20f494d0f"
+            ]
+        ]
+    },
+    {
+        "id": "69de4c67df05cba8",
+        "type": "broker",
+        "z": "2bfb88bb86f93598",
+        "name": "upstairs_broker",
+        "host": "192.168.1.12",
+        "port": "6379",
+        "b_type": "redis",
+        "username": "linda",
+        "password": "lindasPassword",
+        "db": "2",
+        "exchange": "",
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "f992d84c796f9152"
+            ]
+        ]
+    },
+    {
+        "id": "4abc07376f137488",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Brokers",
+        "info": "",
+        "x": 110,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "d3d71bc75c354440",
+        "type": "entity",
+        "z": "2bfb88bb86f93598",
+        "name": "thermostat",
+        "topic": "hallway.thermostat",
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "83a8e617a033a1ad",
+                "093122db06a4dc3d"
+            ]
+        ]
+    },
+    {
+        "id": "52f5cc3390367247",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "on",
+        "a_type": "bool",
+        "x": 450,
+        "y": 40,
+        "wires": [
+            [
+                "d3d71bc75c354440"
+            ]
+        ]
+    },
+    {
+        "id": "13062783dff1bed5",
+        "type": "entity",
+        "z": "2bfb88bb86f93598",
+        "name": "humidity",
+        "topic": "living_room.humidity",
+        "x": 600,
+        "y": 120,
+        "wires": [
+            [
+                "03a9b35c5eb468e6"
+            ]
+        ]
+    },
+    {
+        "id": "e6273600b663fa47",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "humidity",
+        "a_type": "float",
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "13062783dff1bed5"
+            ]
+        ]
+    },
+    {
+        "id": "01a5c4a20f494d0f",
+        "type": "entity",
+        "z": "2bfb88bb86f93598",
+        "name": "thermometer",
+        "topic": "porch.thermometer",
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "83a8e617a033a1ad",
+                "093122db06a4dc3d"
+            ]
+        ]
+    },
+    {
+        "id": "06d498a319f72724",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "temperature",
+        "a_type": "float",
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "01a5c4a20f494d0f"
+            ]
+        ]
+    },
+    {
+        "id": "f992d84c796f9152",
+        "type": "entity",
+        "z": "2bfb88bb86f93598",
+        "name": "aircondition",
+        "topic": "bedroom.aircondition",
+        "x": 590,
+        "y": 460,
+        "wires": [
+            [
+                "03a9b35c5eb468e6",
+                "de9ed2bfc2a4ee81"
+            ]
+        ]
+    },
+    {
+        "id": "b7cfc8880a89ec69",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "temperature",
+        "a_type": "float",
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "f992d84c796f9152"
+            ]
+        ]
+    },
+    {
+        "id": "0326071b180d80b7",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "mode",
+        "a_type": "string",
+        "x": 330,
+        "y": 540,
+        "wires": [
+            [
+                "f992d84c796f9152"
+            ]
+        ]
+    },
+    {
+        "id": "83a8e617a033a1ad",
+        "type": "automation",
+        "z": "2bfb88bb86f93598",
+        "name": "adjust_thermostat_on",
+        "condition": "((temperature.temperature < 12) AND (clock.hours > 18)) AND (thermostat.on == false)",
+        "enabled": true,
+        "actions": "thermostat.on: true",
+        "x": 940,
+        "y": 120,
+        "wires": [
+            [
+                "bf352d08b6228ecb"
+            ]
+        ]
+    },
+    {
+        "id": "ac87c76a5a603572",
+        "type": "entity",
+        "z": "2bfb88bb86f93598",
+        "name": "clock",
+        "topic": "time.clock",
+        "x": 570,
+        "y": 380,
+        "wires": [
+            [
+                "83a8e617a033a1ad",
+                "093122db06a4dc3d",
+                "de9ed2bfc2a4ee81"
+            ]
+        ]
+    },
+    {
+        "id": "9829f2202ad0ee4d",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "hours",
+        "a_type": "int",
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "ac87c76a5a603572"
+            ]
+        ]
+    },
+    {
+        "id": "d7f505eebce1c86b",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "minutes",
+        "a_type": "int",
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "ac87c76a5a603572"
+            ]
+        ]
+    },
+    {
+        "id": "374b37d4c1d99d34",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "seconds",
+        "a_type": "int",
+        "x": 380,
+        "y": 380,
+        "wires": [
+            [
+                "ac87c76a5a603572"
+            ]
+        ]
+    },
+    {
+        "id": "093122db06a4dc3d",
+        "type": "automation",
+        "z": "2bfb88bb86f93598",
+        "name": "adjust_thermostat_off",
+        "condition": "((temperature.temperature >= 25) AND (clock.hours > 18)) AND (thermostat.on == true)",
+        "enabled": true,
+        "actions": "thermostat.on: false",
+        "x": 940,
+        "y": 200,
+        "wires": [
+            [
+                "bf352d08b6228ecb"
+            ]
+        ]
+    },
+    {
+        "id": "03a9b35c5eb468e6",
+        "type": "automation",
+        "z": "2bfb88bb86f93598",
+        "name": "start_aircondition",
+        "condition": "((thermometer.temperature > 32) AND (humidity.humidity > 30)) AND (aircondition.on == false))",
+        "enabled": true,
+        "actions": "aircondition.temperature: 25\naircondition.mode: cool\naircondition.on: true",
+        "x": 930,
+        "y": 340,
+        "wires": [
+            [
+                "bf352d08b6228ecb"
+            ]
+        ]
+    },
+    {
+        "id": "557fe75b721d87a8",
+        "type": "attribute",
+        "z": "2bfb88bb86f93598",
+        "name": "on",
+        "a_type": "bool",
+        "x": 330,
+        "y": 580,
+        "wires": [
+            [
+                "f992d84c796f9152"
+            ]
+        ]
+    },
+    {
+        "id": "de9ed2bfc2a4ee81",
+        "type": "automation",
+        "z": "2bfb88bb86f93598",
+        "name": "stop_aircondition",
+        "condition": "(thermometer.temperature < 24) OR (clock.hours == 2)",
+        "enabled": true,
+        "actions": "aircondition.on: false",
+        "x": 930,
+        "y": 420,
+        "wires": [
+            [
+                "bf352d08b6228ecb"
+            ]
+        ]
+    },
+    {
+        "id": "bf352d08b6228ecb",
+        "type": "generate",
+        "z": "2bfb88bb86f93598",
+        "name": "generate",
+        "x": 1210,
+        "y": 260,
+        "wires": [
+            [
+                "7672d4fdee024208",
+                "b9cb55bcdf68112e"
+            ]
+        ]
+    },
+    {
+        "id": "b9cb55bcdf68112e",
+        "type": "debug",
+        "z": "2bfb88bb86f93598",
+        "name": "Print Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7672d4fdee024208",
+        "type": "mqtt out",
+        "z": "2bfb88bb86f93598",
+        "name": "Deploy",
+        "topic": "ha_auto.scripts",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6278e5a647b4dd59",
+        "x": 1400,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "25eb28bdc18d64f6",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Attributes",
+        "info": "",
+        "x": 340,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fbce4945c49e620a",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Entities",
+        "info": "",
+        "x": 570,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "6482ebad10254372",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Automations",
+        "info": "",
+        "x": 910,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "998ba2203830ba12",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Generation",
+        "info": "",
+        "x": 1220,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "81cbd5fba4af0e68",
+        "type": "comment",
+        "z": "2bfb88bb86f93598",
+        "name": "Deployment",
+        "info": "",
+        "x": 1410,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "6278e5a647b4dd59",
+        "type": "mqtt-broker",
+        "name": "Mosquitto",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
