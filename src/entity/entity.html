@@ -3,6 +3,10 @@
     category: "ha auto",
     color: '#a63bcf',
     defaults: {
+      label: {
+        value: "",
+        required: false
+      },
       name: {
         value: "",
         required: true,
@@ -18,12 +22,16 @@
     outputs:1,
     icon: "file.png",
     label: function() {
-      return this.name||"entity";
+      return this.label||this.name||"entity";
     }
   });
 </script>
 
 <script type="text/html" data-template-name="entity">
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
+  </div>
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -34,6 +42,24 @@
   </div>
 </script>
 
-<script type="text/html" data-help-name="broker">
-  <p>HA-Auto Entity</p>
+<script type="text/html" data-help-name="entity">
+  <h1>HA-Auto Entity Node</h1>
+  <p>
+    Use this node to represent an Entity in your HA-Auto setup. The Entity node merges received Broker and Attribute
+    messages and adds its own internal state to the message that it sends each time it receives a new input message
+    (Broker or Attributes). When this node receives a message from a Broker node, it updates its internal broker
+    property. When it receives a message from an Attribute node, it updates its internal attributes property to include
+    the new Attribute.
+  </p>
+  <p>
+    Note: Connect only one Broker node to the Entity node input, since an Entity can only have one Broker for
+    communications.
+  </p>
+  <p>Properties:</p>
+  <ul>
+    <li><b>Label:</b> The display label for the node in the Node-RED editor.</li>
+    <li><b>Name:</b> The Entity name used when defining Automation conditions. Must start with letter and only contain
+      letters, numbers and underscores.</li>
+    <li><b>Topic:</b> The Broker topic for communicating with this Entity.</li>
+  </ul>
 </script>
