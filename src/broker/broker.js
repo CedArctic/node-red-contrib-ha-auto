@@ -1,6 +1,10 @@
 module.exports = function(RED) {
     function BrokerNode(config) {
-        // Artificial timeout on deployment so that all nodes can be initialized.
+        /*
+        Artificial timeout on Node-RED flow Deployment. This delay is in place so that other Nodes in the flow that
+        were added in the Node-RED editor after the Broker node are fully initialized and ready to receive messages
+        before the Broker node sends out its message.
+        */
         let initTimeout = 500;
         RED.nodes.createNode(this, config);
         const node = this;
