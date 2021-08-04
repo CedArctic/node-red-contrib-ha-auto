@@ -3,6 +3,10 @@
     category: "ha auto",
     color: '#28b88f',
     defaults: {
+      label: {
+        value: "",
+        required: false
+      },
       name: {
         value: "",
         required: true,
@@ -18,14 +22,18 @@
     },
     inputs:0,
     outputs:1,
-    icon: "file.png",
+    icon: "hash.png",
     label: function() {
-      return this.name||"attribute";
+      return this.label||this.name||"attribute";
     }
   });
 </script>
 
 <script type="text/html" data-template-name="attribute">
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
+  </div>
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -44,5 +52,15 @@
 </script>
 
 <script type="text/html" data-help-name="attribute">
-  <p>HA-Auto Entity Attribute</p>
+  <p>HA-Auto Attribute Node</p>
+  <p>Use this node to represent an Entity Attribute in your HA-Auto setup.
+    After a small initial delay, to wait for the initialization of the rest of the nodes, the Attribute node sends out
+    a message with the Attribute properties in msg.attributes.<i>attribute_name</i>.</p>
+  <p>Properties:</p>
+  <ul>
+    <li><b>Label:</b> The display label for the node in the Node-RED editor.</li>
+    <li><b>Name:</b> The Attribute name used when defining Automation conditions.
+      Must start with letter and only contain letters, numbers and underscores.</li>
+    <li><b>Type:</b> The Attribute type. It can be a string, float, integer, list, dictionary or boolean.</li>
+  </ul>
 </script>
