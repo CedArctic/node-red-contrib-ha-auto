@@ -3,6 +3,10 @@
     category: "ha auto",
     color: '#fc8403',
     defaults: {
+      label: {
+        value: "",
+        required: false
+      },
       name: {
         value: "",
         required: true,
@@ -24,14 +28,18 @@
     },
     inputs:1,
     outputs:1,
-    icon: "file.png",
+    icon: "function.png",
     label: function() {
-      return this.name||"automation";
+      return this.label||this.name||"automation";
     },
   });
 </script>
 
 <script type="text/html" data-template-name="automation">
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
+  </div>
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -51,5 +59,92 @@
 </script>
 
 <script type="text/html" data-help-name="automation">
-  <p>HA-Auto Automation</p>
+  <h1>HA-Auto Automation Node</h1>
+  <p>
+    Use this node to define a HA-Auto Automation. The node accepts connections from multiple Entities, specifically
+    all the Entities involved in the Automation's condition and actions. All received messages from Entity nodes
+    containing Brokers, Attributes and Entities are merged and sent out in a message with the Automation added in
+    msg.automations.<i>automation_name</i>.
+  </p>
+
+  <h2>Properties:</h2>
+  <ul>
+    <li><b>Label:</b> The display label for the node in the Node-RED editor.</li>
+    <li><b>Name:</b> The Automation name used internally by HA-Auto.
+      It must start with a letter and only contain letters, numbers and underscores.</li>
+    <li><b>Condition:</b> The condition used to determine when the actions will be executed.
+      See the paragraph on writing conditions bellow.</li>
+    <li><b>Enabled:</b> A toggle indicating if the Automation is enabled, i.e: whether the condition should be
+      evaluated.</li>
+    <li><b>Continuous:</b> A toggle indicating if the Automation should remain enabled so it can be run again after
+      the actions have been executed.</li>
+    <li><b>Actions:</b> A set of actions to execute when the condition has been evaluated successfully.
+      See the paragraph on writing conditions bellow. </li>
+  </ul>
+
+  <h2>Writing Conditions</h2>
+  <p>
+    HA-Auto Conditions are very similar to conditions in imperative programming languages such as Python, Java, C++
+    or JavaScript. You can use Entity Attributes in a condition just like a variable by inserting it in the condition
+    as such: <i>entity_name.attribute_name.</i>
+  </p>
+
+  <h3>Condition Formatting:</h3>
+  <p>
+    You can combine two conditions into a more complex one using logical operators. A HA-Auto condition looks like this:
+    <br><br>
+    (condition_1) LOGICAL_OP (condition_2)
+    <br><br>
+    Make sure to not forget the parenthesis. Also, note that currently HA-Auto only supports grouping conditions with
+    logical operators in pairs. This means that an expression like:
+    <br><br>
+    condition_1 AND condition_2 AND condition_3
+    <br><br>
+    will have to be rephrased to an equivalent like:
+    <br><br>
+    ((condition_1) AND (condition_2)) AND (condition_3)
+  </p>
+
+  <h3>Lists and Dictionaries:</h3>
+  <p>
+    HA-Auto has support for Lists and Dictionaries and even nesting them. However, for now the use of lists and
+    dictionaries in conditions are treated as full objects and their individual elements cannot be accessed and used in
+    conditions. This means that you can compare a List to a full other List, but cannot compare individual list items.
+    Similarly, you can compare a full dictionary to another but cannot use individual dictionary items in conditions.
+  </p>
+
+  <h3>List of operators:</h3>
+  <ul>
+    <li><b>String Operators:</b> '~', '!~', '==', '!='</li>
+    <li><b>Numeric Operators:</b> '>', '<', '==', '!='</li>
+    <li><b>Boolean / Logical Operators:</b> 'AND', 'OR', 'NOT', 'XOR', 'NOR', 'XNOR', 'NAND'</li>
+    <li><b>List and Dictionary Operators:</b> '==', '!='</li>
+  </ul>
+
+  <h3>Example Conditions:</h3>
+  <p>
+    Bellow you will find some example conditions for HA-Auto. You can find more by visiting the examples folder in the
+    HA-Auto repository <a href="https://github.com/eellak/gsoc2021-HA-Auto-Node-RED">here</a>.
+  </p>
+  <ul>
+    <li>(bedroom_humidity.humidity < 0.3) AND (bedroom_humidifier.state == 0)</li>
+    <li>((bedroom_human_detector.position != []) AND (bedroom_thermometer.temperature < 27.5)) AND
+      (bedroom_thermostat.state == 0)</li>
+  </ul>
+
+  <h2>Writing Actions</h2>
+  <p>
+    Actions are essentially messages to actuators in your HA-Auto setup such as air conditioners, lights or speakers.
+    Each action takes a single line and follows the following format:
+    <br><br>
+    <i>entity_name.attribute_name: object</i>
+    <br><br>
+    Where object can be a string, number, boolean (true/false), list or dictionary.
+  </p>
+  <h3>Examples:</h3>
+  <p>
+    aircondition.temperature: 25
+    <br>aircondition.mode: cool
+    <br>aircondition.on: true
+  </p>
 </script>
