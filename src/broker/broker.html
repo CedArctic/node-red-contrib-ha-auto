@@ -3,6 +3,10 @@
     category: "ha auto",
     color: '#5ab1fc',
     defaults: {
+      label: {
+        value: "",
+        required: false
+      },
       name: {
         value: "",
         required: true,
@@ -37,7 +41,8 @@
       db:{
         // Redis database number
         value: 0,
-        // Validate REDIS database number
+        // Validate REDIS database number. Currently not enabled as the value is treated as a string.
+        // Integer validation is done using the "step" attribute in the HTML bellow.
         // validate: (db) => Number.isInteger(db)
       },
       exchange:{
@@ -47,14 +52,18 @@
     },
     inputs:0,
     outputs:1,
-    icon: "file.png",
+    icon: "envelope.png",
     label: function() {
-      return this.name||"broker";
+      return this.label||this.name||"broker";
     }
   });
 </script>
 
 <script type="text/html" data-template-name="broker">
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
+  </div>
   <div class="form-row">
     <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
@@ -85,7 +94,7 @@
   </div>
   <div class="form-row">
     <label for="node-input-db"><i class="fa fa-tag"></i> Redis DB Number (Optional)</label>
-    <input type="number" id="node-input-db" placeholder="0">
+    <input type="number" id="node-input-db" placeholder="0" min="0" step="1">
   </div>
   <div class="form-row">
     <label for="node-input-exchange"><i class="fa fa-tag"></i> AMQP Exchange (Optional)</label>
@@ -94,5 +103,21 @@
 </script>
 
 <script type="text/html" data-help-name="broker">
-  <p>HA-Auto Broker</p>
+  <h1>HA-Auto Broker Node</h1>
+  <p>Use this node to represent a Broker in your HA-Auto setup.</p>
+  <p>Properties:</p>
+  <ul>
+    <li><b>Label:</b> The display label for the node in the Node-RED editor.</li>
+    <li><b>Name:</b> The Broker name used internally by HA-Auto. Must start with letter and only contain letters,
+      numbers and underscores</li>
+    <li><b>Host:</b> The Broker IP address or domain.</li>
+    <li><b>Port:</b> The Host Port that the Broker is listening on. E.g: MQTT uses port 1883 by default.</li>
+    <li><b>Type:</b> The type of Broker. HA-Auto supports AMQP, MQTT and Redis Brokers.</li>
+    <li><b>Username:</b> Username for authentication when connecting to the Broker.</li>
+    <li><b>Password:</b> Password for authentication when connecting to the Broker.</li>
+    <li><b>Redis DB Number (Optional):</b> The Redis database number. Used only if you selected Redis as the Broker
+      Type</li>
+    <li><b>AMQP Exchange (Optional):</b> The AMQP Exchange String. Used only if you selected AMQP as the Broker
+      Type.</li>
+  </ul>
 </script>
