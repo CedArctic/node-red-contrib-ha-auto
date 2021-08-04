@@ -3,29 +3,33 @@
     category: "ha auto",
     color: '#fcba03',
     defaults: {
-      name: {
+      label: {
         value: "",
-        required: true,
-        // Validate name: Must start with letter and only contain letters, numbers and underscores
-        validate: (name) => /^[A-Za-z][A-Za-z_0-9]*$/.test(name)
+        required: false,
       }
     },
     inputs:1,
     outputs:1,
-    icon: "file.png",
+    icon: "template.png",
     label: function() {
-      return this.name||"generate";
+      return this.label||"generate";
     },
   });
 </script>
 
 <script type="text/html" data-template-name="generate">
   <div class="form-row">
-    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-    <input type="text" id="node-input-name" placeholder="Name">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
   </div>
 </script>
 
 <script type="text/html" data-help-name="generate">
-  <p>HA-Auto Generation Node</p>
+  <h1>HA-Auto Generation Node</h1>
+  <p>
+    This node accepts connections from Automation nodes and builds the final full HA-Auto configuration.
+    Each time a message is received, the node generates a configuration, adds it to msg.payload and sends the message.
+    The Generate node can be followed by an MQTT Out node to send the final configuration to the HA-Auto backend to be
+    run.
+  </p>
 </script>
