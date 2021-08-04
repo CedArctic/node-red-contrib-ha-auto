@@ -1,4 +1,4 @@
-const utils = require("./utils.js");
+const utils = require("../utils/utils.js");
 module.exports = function(RED) {
     function GenerateNode(config) {
         RED.nodes.createNode(this, config);

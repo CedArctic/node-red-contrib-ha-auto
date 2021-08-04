@@ -16,11 +16,11 @@
   "license": "MIT",
   "node-red": {
     "nodes": {
-      "broker": "broker.js",
-      "attribute": "attribute.js",
-      "entity": "entity.js",
-      "automation": "automation.js",
-      "generate": "generate.js"
+      "broker": "src/broker/broker.js",
+      "attribute": "src/attribute/attribute.js",
+      "entity": "src/entity/entity.js",
+      "automation": "src/automation/automation.js",
+      "generate": "src/generate/generate.js"
     }
   },
   "dependencies": {}
