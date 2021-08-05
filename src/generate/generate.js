@@ -91,6 +91,7 @@ module.exports = function(RED) {
                     `\tname: ${automation.name}\n` +
                     `\tcondition: ${automation.condition}\n` +
                     `\tenabled: ${automation.enabled}\n` +
+                    `\tcontinuous: ${automation.continuous}\n` +
                     `\tactions:\n`;
 
                 // Parse actions

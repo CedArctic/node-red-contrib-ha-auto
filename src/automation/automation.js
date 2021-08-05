@@ -11,6 +11,7 @@ module.exports = function(RED) {
             name: this.name,
             condition: config.condition,
             enabled: config.enabled,
+            continuous: config.continuous,
             actions: {}
         }
 
