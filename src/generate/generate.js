@@ -38,15 +38,15 @@ module.exports = function(RED) {
                 model = model +
                     `${broker.b_type}:\n` +
                     `\tname: ${broker.name}\n` +
-                    `\thost: ${broker.host}\n` +
+                    `\thost: \"${broker.host}\"\n` +
                     `\tport: ${broker.port}\n` +
                     `\tcredentials:\n` +
-                    `\t\tusername: ${broker.username}\n` +
-                    `\t\tpassword: ${broker.password}\n`;
+                    `\t\tusername: \"${broker.username}\"\n` +
+                    `\t\tpassword: \"${broker.password}\"\n`;
 
                 // AMQP additions
                 if (broker.b_type === "amqp" && broker.exchange != "") {
-                    model = model + `\texchange: ${broker.exchange}\n`;
+                    model = model + `\texchange: \"${broker.exchange}\"\n`;
                 }
 
                 // Redis additions
@@ -67,7 +67,7 @@ module.exports = function(RED) {
                 model = model +
                     `entity:\n` +
                     `\tname: ${entity.name}\n` +
-                    `\ttopic: ${entity.topic}\n` +
+                    `\ttopic: \"${entity.topic}\"\n` +
                     `\tbroker: ${entity.broker}\n` +
                     `\tattributes:\n`;
 
@@ -104,7 +104,7 @@ module.exports = function(RED) {
             }
 
             // Put model in message payload so it can be sent using the MQTT node
-            state.payload = model;
+            state.payload = {"config": model};
 
             // Send message
             node.send(state);
