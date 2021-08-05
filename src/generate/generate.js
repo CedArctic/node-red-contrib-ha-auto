@@ -3,6 +3,14 @@ module.exports = function(RED) {
     function GenerateNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
+
+        /*
+        Artificial delay on Node-RED flow Deployment. This delay is in place so that the Generate node can receive
+        all required messages and send out a single final configuration rather than send partially formed HA-Auto
+        configurations each time that it receives an input message.
+        */
+        let initTimeout = 2000;
+
         // State object. Used to merge all incoming messages (Broker and Attributes) for this Entity
         let state = {automations: {}, entities: {}, brokers: {}};
 
@@ -13,6 +21,14 @@ module.exports = function(RED) {
             // Deep merge message and state
             state = utils.mergeDeep(state, msg);
 
+            // Signal to Node-RED that message processing is done
+            if (done) {
+                done();
+            }
+        });
+
+        // Generate and send final message after initial delay to wait and receive all incoming messages
+        setTimeout(function(){
             // Final model
             let model = "";
 
@@ -87,16 +103,11 @@ module.exports = function(RED) {
             }
 
             // Put model in message payload so it can be sent using the MQTT node
-            msg.payload = model;
+            state.payload = model;
 
             // Send message
-            send(msg);
-
-            // Signal to Node-RED that message processing is done
-            if (done) {
-                done();
-            }
-        });
+            node.send(state);
+        }, initTimeout);
     }
     RED.nodes.registerType("generate", GenerateNode);
 }
