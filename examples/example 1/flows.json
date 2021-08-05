@@ -1,15 +1,15 @@
 [
     {
-        "id": "2bfb88bb86f93598",
+        "id": "29078897f7cb91a1",
         "type": "tab",
         "label": "Example 1",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "63a67891bedc376b",
+        "id": "351111cc59a089f7",
         "type": "broker",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "Downstairs Broker",
         "name": "downstairs_broker",
         "host": "192.168.1.5",
@@ -23,16 +23,16 @@
         "y": 180,
         "wires": [
             [
-                "d3d71bc75c354440",
-                "13062783dff1bed5",
-                "01a5c4a20f494d0f"
+                "b6c08549f65b8a1d",
+                "eded41f98e62f440",
+                "215706489eb5cd2e"
             ]
         ]
     },
     {
-        "id": "69de4c67df05cba8",
+        "id": "8fbb470f77400799",
         "type": "broker",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "Upstairs Broker",
         "name": "upstairs_broker",
         "host": "192.168.1.12",
@@ -46,14 +46,15 @@
         "y": 460,
         "wires": [
             [
-                "f992d84c796f9152"
+                "9235d013dc4dc89f",
+                "a00d57fd660f5340"
             ]
         ]
     },
     {
-        "id": "4abc07376f137488",
+        "id": "b05043999bcd26e3",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Brokers",
         "info": "",
         "x": 110,
@@ -61,141 +62,141 @@
         "wires": []
     },
     {
-        "id": "d3d71bc75c354440",
+        "id": "b6c08549f65b8a1d",
         "type": "entity",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "thermostat",
         "topic": "hallway.thermostat",
         "x": 610,
         "y": 80,
         "wires": [
             [
-                "83a8e617a033a1ad",
-                "093122db06a4dc3d"
+                "615e2c81e26c1b05",
+                "b51f08f68711b58e"
             ]
         ]
     },
     {
-        "id": "52f5cc3390367247",
+        "id": "e048383d35f1d9eb",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "on",
         "a_type": "bool",
         "x": 450,
         "y": 40,
         "wires": [
             [
-                "d3d71bc75c354440"
+                "b6c08549f65b8a1d"
             ]
         ]
     },
     {
-        "id": "13062783dff1bed5",
+        "id": "eded41f98e62f440",
         "type": "entity",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "humidity",
         "topic": "living_room.humidity",
         "x": 600,
         "y": 120,
         "wires": [
             [
-                "03a9b35c5eb468e6"
+                "12b381d0a8a3f25f"
             ]
         ]
     },
     {
-        "id": "e6273600b663fa47",
+        "id": "07d3819047ed9a99",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "humidity",
         "a_type": "float",
         "x": 460,
         "y": 160,
         "wires": [
             [
-                "13062783dff1bed5"
+                "eded41f98e62f440"
             ]
         ]
     },
     {
-        "id": "01a5c4a20f494d0f",
+        "id": "215706489eb5cd2e",
         "type": "entity",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "thermometer",
         "topic": "porch.thermometer",
         "x": 610,
         "y": 240,
         "wires": [
             [
-                "83a8e617a033a1ad",
-                "093122db06a4dc3d"
+                "615e2c81e26c1b05",
+                "b51f08f68711b58e"
             ]
         ]
     },
     {
-        "id": "06d498a319f72724",
+        "id": "2439a95a1e111eec",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "temperature",
         "a_type": "float",
         "x": 350,
         "y": 240,
         "wires": [
             [
-                "01a5c4a20f494d0f"
+                "215706489eb5cd2e"
             ]
         ]
     },
     {
-        "id": "f992d84c796f9152",
+        "id": "9235d013dc4dc89f",
         "type": "entity",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "aircondition",
         "topic": "bedroom.aircondition",
         "x": 590,
         "y": 460,
         "wires": [
             [
-                "03a9b35c5eb468e6",
-                "de9ed2bfc2a4ee81"
+                "12b381d0a8a3f25f",
+                "49f22c1de9ce492c"
             ]
         ]
     },
     {
-        "id": "b7cfc8880a89ec69",
+        "id": "967fbacc6021b9c2",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "temperature",
         "a_type": "float",
         "x": 350,
         "y": 500,
         "wires": [
             [
-                "f992d84c796f9152"
+                "9235d013dc4dc89f"
             ]
         ]
     },
     {
-        "id": "0326071b180d80b7",
+        "id": "7a026b2764fdb8e7",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "mode",
         "a_type": "string",
         "x": 330,
         "y": 540,
         "wires": [
             [
-                "f992d84c796f9152"
+                "9235d013dc4dc89f"
             ]
         ]
     },
     {
-        "id": "83a8e617a033a1ad",
+        "id": "615e2c81e26c1b05",
         "type": "automation",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "",
         "name": "adjust_thermostat_on",
-        "condition": "((temperature.temperature < 12) AND (clock.hours > 18)) AND (thermostat.on == false)",
+        "condition": "((thermometer.temperature < 12) AND (clock.hours > 18)) AND (thermostat.on NOT true)",
         "enabled": true,
         "continuous": false,
         "actions": "thermostat.on: true",
@@ -203,75 +204,75 @@
         "y": 120,
         "wires": [
             [
-                "bf352d08b6228ecb"
+                "80035ddc10eb3d95"
             ]
         ]
     },
     {
-        "id": "ac87c76a5a603572",
+        "id": "a00d57fd660f5340",
         "type": "entity",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "clock",
         "topic": "time.clock",
         "x": 570,
         "y": 380,
         "wires": [
             [
-                "83a8e617a033a1ad",
-                "093122db06a4dc3d",
-                "de9ed2bfc2a4ee81"
+                "615e2c81e26c1b05",
+                "b51f08f68711b58e",
+                "49f22c1de9ce492c"
             ]
         ]
     },
     {
-        "id": "9829f2202ad0ee4d",
+        "id": "5270a6c66d94bbc7",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "hours",
         "a_type": "int",
         "x": 370,
         "y": 300,
         "wires": [
             [
-                "ac87c76a5a603572"
+                "a00d57fd660f5340"
             ]
         ]
     },
     {
-        "id": "d7f505eebce1c86b",
+        "id": "fbb4c2022b1715b5",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "minutes",
         "a_type": "int",
         "x": 370,
         "y": 340,
         "wires": [
             [
-                "ac87c76a5a603572"
+                "a00d57fd660f5340"
             ]
         ]
     },
     {
-        "id": "374b37d4c1d99d34",
+        "id": "7a3102cd348cc025",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "seconds",
         "a_type": "int",
         "x": 380,
         "y": 380,
         "wires": [
             [
-                "ac87c76a5a603572"
+                "a00d57fd660f5340"
             ]
         ]
     },
     {
-        "id": "093122db06a4dc3d",
+        "id": "b51f08f68711b58e",
         "type": "automation",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "",
         "name": "adjust_thermostat_off",
-        "condition": "((temperature.temperature >= 25) AND (clock.hours > 18)) AND (thermostat.on == true)",
+        "condition": "((thermometer.temperature > 25) AND (clock.hours > 18)) AND (thermostat.on NOT false)",
         "enabled": true,
         "continuous": false,
         "actions": "thermostat.on: false",
@@ -279,46 +280,46 @@
         "y": 200,
         "wires": [
             [
-                "bf352d08b6228ecb"
+                "80035ddc10eb3d95"
             ]
         ]
     },
     {
-        "id": "03a9b35c5eb468e6",
+        "id": "12b381d0a8a3f25f",
         "type": "automation",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "",
         "name": "start_aircondition",
-        "condition": "((thermometer.temperature > 32) AND (humidity.humidity > 30)) AND (aircondition.on == false))",
+        "condition": "((thermometer.temperature > 32) AND (humidity.humidity > 30)) AND (aircondition.on NOT true)",
         "enabled": true,
         "continuous": false,
-        "actions": "aircondition.temperature: 25\naircondition.mode: cool\naircondition.on: true",
+        "actions": "aircondition.temperature: 25.0\naircondition.mode: cool\naircondition.on: true",
         "x": 930,
         "y": 340,
         "wires": [
             [
-                "bf352d08b6228ecb"
+                "80035ddc10eb3d95"
             ]
         ]
     },
     {
-        "id": "557fe75b721d87a8",
+        "id": "26bef613aa30c904",
         "type": "attribute",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "on",
         "a_type": "bool",
         "x": 330,
         "y": 580,
         "wires": [
             [
-                "f992d84c796f9152"
+                "9235d013dc4dc89f"
             ]
         ]
     },
     {
-        "id": "de9ed2bfc2a4ee81",
+        "id": "49f22c1de9ce492c",
         "type": "automation",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "",
         "name": "stop_aircondition",
         "condition": "(thermometer.temperature < 24) OR (clock.hours == 2)",
@@ -329,28 +330,28 @@
         "y": 420,
         "wires": [
             [
-                "bf352d08b6228ecb"
+                "80035ddc10eb3d95"
             ]
         ]
     },
     {
-        "id": "bf352d08b6228ecb",
+        "id": "80035ddc10eb3d95",
         "type": "generate",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "label": "Generate",
         "x": 1210,
         "y": 260,
         "wires": [
             [
-                "7672d4fdee024208",
-                "b9cb55bcdf68112e"
+                "4c365660cb4f35cd",
+                "9f72c98bbe6cb672"
             ]
         ]
     },
     {
-        "id": "b9cb55bcdf68112e",
+        "id": "9f72c98bbe6cb672",
         "type": "debug",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Print Output",
         "active": true,
         "tosidebar": true,
@@ -365,11 +366,11 @@
         "wires": []
     },
     {
-        "id": "7672d4fdee024208",
+        "id": "4c365660cb4f35cd",
         "type": "mqtt out",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Deploy",
-        "topic": "ha_auto.scripts",
+        "topic": "ha_auto/model",
         "qos": "0",
         "retain": "true",
         "respTopic": "",
@@ -383,9 +384,9 @@
         "wires": []
     },
     {
-        "id": "25eb28bdc18d64f6",
+        "id": "02e146839cd210c3",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Attributes",
         "info": "",
         "x": 340,
@@ -393,9 +394,9 @@
         "wires": []
     },
     {
-        "id": "fbce4945c49e620a",
+        "id": "83a3c5f88f7026a8",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Entities",
         "info": "",
         "x": 570,
@@ -403,9 +404,9 @@
         "wires": []
     },
     {
-        "id": "6482ebad10254372",
+        "id": "52080522b31e23bb",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Automations",
         "info": "",
         "x": 910,
@@ -413,9 +414,9 @@
         "wires": []
     },
     {
-        "id": "998ba2203830ba12",
+        "id": "8fbfd3446d12ef56",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Generation",
         "info": "",
         "x": 1220,
@@ -423,9 +424,9 @@
         "wires": []
     },
     {
-        "id": "81cbd5fba4af0e68",
+        "id": "b74aeaff30515fb6",
         "type": "comment",
-        "z": "2bfb88bb86f93598",
+        "z": "29078897f7cb91a1",
         "name": "Deployment",
         "info": "",
         "x": 1410,
