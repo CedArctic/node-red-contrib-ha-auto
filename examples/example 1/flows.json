@@ -16,7 +16,7 @@
         "port": "1883",
         "b_type": "mqtt",
         "username": "george",
-        "password": "goergePass",
+        "password": "georgePassword",
         "db": 0,
         "exchange": "",
         "x": 150,
@@ -293,7 +293,7 @@
         "condition": "((thermometer.temperature > 32) AND (humidity.humidity > 30)) AND (aircondition.on NOT true)",
         "enabled": true,
         "continuous": false,
-        "actions": "aircondition.temperature: 25.0\naircondition.mode: cool\naircondition.on: true",
+        "actions": "aircondition.temperature: 25.0,\naircondition.mode: \"cool\",\naircondition.on: true",
         "x": 930,
         "y": 340,
         "wires": [
