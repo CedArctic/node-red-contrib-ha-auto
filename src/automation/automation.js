@@ -25,7 +25,7 @@ module.exports = function(RED) {
             attribute = split[0];
             value = split[1];
 
-            // TODO: Probably do type parsing on value. I.E: convert "true" string to true bool type
+            // TODO: Probably do type parsing on value. I.E: convert "true" string to true bool type. Not needed for now
 
             // Add to state["automations"][this.name]["actions"]
             state["automations"][node.name]["actions"][attribute] = value;
