@@ -1,6 +1,6 @@
 const utils = require("../utils/utils.js");
 module.exports = function(RED) {
-    function GenerateNode(config) {
+    function LaunchNode(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
@@ -110,5 +110,5 @@ module.exports = function(RED) {
             node.send(state);
         }, initTimeout);
     }
-    RED.nodes.registerType("generate", GenerateNode);
+    RED.nodes.registerType("launch", LaunchNode);
 }

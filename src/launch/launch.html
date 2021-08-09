@@ -1,0 +1,93 @@
+<script type="text/javascript">
+  RED.nodes.registerType('launch',{
+    category: "ha auto",
+    color: '#fcba03',
+    defaults: {
+      label: {
+        value: "",
+        required: false,
+      },
+      host: {
+        value: "",
+        required: false,
+      },
+      port: {
+        value: 0,
+        required: false,
+        // Validate port: Well Known Ports, Registered Ports & Dynamic and/or Private Ports: 0 through 65536.
+        // Matches numbers in range of 0 through 65536. Source: regexlib.com
+        validate: (port) => /^(6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]\d{4}|[1-9]\d{0,3}|0)$/.test(port)
+      },
+      username:{
+        value: "",
+        required: false,
+      },
+      password:{
+        value: "",
+        required: false,
+      },
+      topic: {
+        value: "",
+        required: false,
+      },
+    },
+    inputs:1,
+    outputs:1,
+    icon: "font-awesome/fa-cogs",
+    label: function() {
+      return this.label||"launch";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="launch">
+  <div class="form-row">
+    <label for="node-input-label"><i class="fa fa-tag"></i> Label</label>
+    <input type="text" id="node-input-label" placeholder="Label">
+  </div>
+  <hr>
+  <div class="form-row">
+    <h3>MQTT Broker Config (Optional)</h3>
+  </div>
+  <div class="form-row">
+    <label for="node-input-host"><i class="fa fa-tag"></i> Host</label>
+    <input type="text" id="node-input-host" placeholder="Host">
+  </div>
+  <div class="form-row">
+    <label for="node-input-port"><i class="fa fa-tag"></i> Port</label>
+    <input type="number" id="node-input-port" placeholder="Port">
+  </div>
+  <div class="form-row">
+    <label for="node-input-username"><i class="fa fa-tag"></i> Username</label>
+    <input type="text" id="node-input-username" placeholder="Username">
+  </div>
+  <div class="form-row">
+    <label for="node-input-password"><i class="fa fa-tag"></i> Password</label>
+    <input type="password" id="node-input-password" placeholder="Password">
+  </div>
+  <div class="form-row">
+    <label for="node-input-topic"><i class="fa fa-tag"></i> Topic</label>
+    <input type="text" id="node-input-topic" placeholder="Topic">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="launch">
+  <h1>HA-Auto Launch Node</h1>
+  <p>
+    This node accepts connections from Automation nodes and builds the final full HA-Auto configuration.
+    Each time a message is received, the node generates a configuration, adds it to msg.payload and sends the message.
+    The Launch node can directly connect to an MQTT broker to send the final configuration to the HA-Auto backend to
+    be run.
+  </p>
+
+  <h2>Properties:</h2>
+  <ul>
+    <li><b>Label:</b> The display label for the node in the Node-RED editor.</li>
+    <li><b>Host:</b> The IP address or domain of the MQTT broker used to send the configuration to the HA-Auto backend.
+    </li>
+    <li><b>Port:</b> The Host Port that the Broker is listening on. E.g: MQTT uses port 1883 by default.</li>
+    <li><b>Username:</b> Username for authentication when connecting to the Broker.</li>
+    <li><b>Password:</b> Password for authentication when connecting to the Broker.</li>
+    <li><b>Topic:</b> The Broker topic for on which to send the configuration.</li>
+  </ul>
+</script>
