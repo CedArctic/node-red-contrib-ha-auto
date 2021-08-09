@@ -1,4 +1,6 @@
 const utils = require("../utils/utils.js");
+const mqtt = require('mqtt');
+
 module.exports = function(RED) {
     function LaunchNode(config) {
         RED.nodes.createNode(this, config);
@@ -103,11 +105,32 @@ module.exports = function(RED) {
                 model = model + `\n`;
             }
 
-            // Put model in message payload so it can be sent using the MQTT node
+            // Put model in message payload
             state.payload = {"config": model};
 
-            // Send message
+            // Send message on node output
             node.send(state);
+
+            // Connect to MQTT and send message if the
+            if ((config.host !== "") && (config.port !== "")){
+                let mqtt_options = {
+                  port: config.port,
+                  clientId: 'ha_nr_mqtt',
+                  username: config.username,
+                  password: config.password
+                };
+                let client = mqtt.connect('mqtt://' + config.host, mqtt_options);
+
+                client.on('connect', function () {
+                  client.subscribe(config.topic, function (err) {
+                    if (!err) {
+                        console.log("Connected to HA-Auto MQTT config broker")
+                    }
+                  })
+                  client.publish(config.topic, JSON.stringify(state.payload));
+                })
+            }
+
         }, initTimeout);
     }
     RED.nodes.registerType("launch", LaunchNode);

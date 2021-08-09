@@ -23,5 +23,7 @@
       "launch": "src/launch/launch.js"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "mqtt": "^4.2.8"
+  }
 }
