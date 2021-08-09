@@ -111,7 +111,7 @@ module.exports = function(RED) {
             // Send message on node output
             node.send(state);
 
-            // Connect to MQTT and send message if the
+            // Connect to MQTT and send message if optional MQTT is configured
             if ((config.host !== "") && (config.port !== "")){
                 let mqtt_options = {
                   port: config.port,
@@ -127,8 +127,13 @@ module.exports = function(RED) {
                         console.log("Connected to HA-Auto MQTT config broker")
                     }
                   })
+                  // Send configuration
                   client.publish(config.topic, JSON.stringify(state.payload));
+                  // Close connection
+                  client.end();
                 })
+
+
             }
 
         }, initTimeout);
