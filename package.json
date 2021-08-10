@@ -4,9 +4,7 @@
   "description": "HA-Auto Node-RED integration.",
   "homepage": "https://github.com/CedArctic/node-red-contrib-ha-auto/",
   "repository": "github:CedArctic/node-red-contrib-ha-auto",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [
     "node-red",
     "ha-auto"
