@@ -36,6 +36,22 @@
     label: function() {
       return this.label||this.name||"automation";
     },
+    oneditprepare: function() {
+      this.editor = RED.editor.createEditor({
+         id: 'node-input-action-editor',
+         mode: 'ace/mode/text',
+         value: this.actions
+      });
+    },
+    oneditsave: function() {
+        this.actions = this.editor.getValue();
+        this.editor.destroy();
+        delete this.editor;
+    },
+    oneditcancel: function() {
+        this.editor.destroy();
+        delete this.editor;
+    },
   });
 </script>
 
@@ -61,8 +77,8 @@
     <input type="checkbox" id="node-input-continuous" checked>
   </div>
   <div class="form-row">
-    <label for="node-input-actions"><i class="fa fa-tag"></i> Actions</label>
-    <textarea id="node-input-actions" placeholder="Actions" rows="6" cols="120"></textarea>
+    <label for="node-input-action-editor"><i class="fa fa-tag"></i> Actions</label>
+    <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-action-editor"></div>
   </div>
 </script>
 
