@@ -69,11 +69,8 @@
 <script type="text/html" data-help-name="entity">
   <h1>HA-Auto Entity Node</h1>
   <p>
-    Use this node to represent an Entity in your HA-Auto setup. The Entity node merges received Broker and Attribute
-    messages and adds its own internal state to the message that it sends each time it receives a new input message
-    (Broker or Attributes). When this node receives a message from a Broker node, it updates its internal broker
-    property. When it receives a message from an Attribute node, it updates its internal attributes property to include
-    the new Attribute.
+    Use this node to represent an Entity in your HA-Auto setup. When this node receives a message from a Broker node,
+    it updates its internal broker property and forwards the combined Broker and Entity information to its output.
   </p>
   <p>
     Note: Connect only one Broker node to the Entity node input, since an Entity can only have one Broker for
