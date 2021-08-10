@@ -74,9 +74,7 @@ module.exports = function(RED) {
                     `\tattributes:\n`;
 
                 // Parse attributes
-                for (const [key, attribute] of Object.entries(entity.attributes)) {
-                    model = model + `\t\t- ${attribute["name"]}: ${attribute["a_type"]}\n`;
-                }
+                entity.attributes.split("\n").forEach((line) => model = model + `\t\t- ${line}\n`)
 
                 // Newline
                 model = model + `\n`;

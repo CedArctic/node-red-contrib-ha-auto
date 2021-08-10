@@ -9,7 +9,7 @@ module.exports = function(RED) {
         state["entities"][this.name] = {
             name: this.name,
             topic: config.topic,
-            attributes: {}
+            attributes: config.attributes
         }
         //console.log("Initial State", state);
         // Register input event action to process message
@@ -21,12 +21,6 @@ module.exports = function(RED) {
                 //console.log("Message: Broker keys", Object.keys(msg["brokers"]));
                 // At this stage we expect a single key as single Brokers are directly connected onto the Entity
                 state["entities"][this.name]["broker"] = msg["brokers"][Object.keys(msg["brokers"])[0]]["name"];
-            }
-            // If the message is an attribute message, update the entity to contain its attribute
-            if ('attributes' in msg){
-                //console.log("Message: Attributes keys", Object.keys(msg["attributes"]));
-                // At this stage we expect a single key as single Attributes are directly connected onto the Entity
-                state["entities"][this.name]["attributes"] = Object.assign(state["entities"][this.name]["attributes"], msg["attributes"]);
             }
             // Update the state variable and then assign it to the msg variable
             msg = Object.assign(state, msg);

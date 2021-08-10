@@ -17,13 +17,33 @@
         value: "",
         required: true,
       },
+      attributes:{
+        value: "",
+        required: true,
+      }
     },
     inputs:1,
     outputs:1,
     icon: "font-awesome/fa-server",
     label: function() {
       return this.label||this.name||"entity";
-    }
+    },
+    oneditprepare: function() {
+      this.editor = RED.editor.createEditor({
+         id: 'node-input-attributes-editor',
+         mode: 'ace/mode/text',
+         value: this.attributes
+      });
+    },
+    oneditsave: function() {
+        this.attributes = this.editor.getValue();
+        this.editor.destroy();
+        delete this.editor;
+    },
+    oneditcancel: function() {
+        this.editor.destroy();
+        delete this.editor;
+    },
   });
 </script>
 
@@ -39,6 +59,10 @@
   <div class="form-row">
     <label for="node-input-topic"><i class="fa fa-tag"></i> Topic</label>
     <input type="text" id="node-input-topic" placeholder="Topic">
+  </div>
+  <div class="form-row">
+    <label for="node-input-attributes-editor"><i class="fa fa-tag"></i> Attributes</label>
+    <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-attributes-editor"></div>
   </div>
 </script>
 
@@ -61,5 +85,33 @@
     <li><b>Name:</b> The Entity name used when defining Automation conditions. Must start with letter and only contain
       letters, numbers and underscores.</li>
     <li><b>Topic:</b> The Broker topic for communicating with this Entity.</li>
+    <li><b>Attributes:</b> The list of Attributes that belong to this Entity. See paragraph bellow on declaring
+      Attributes.</li>
   </ul>
+
+  <h2>Declaring Attributes</h2>
+  To declare an Attribute, you have to write its name and its type.
+  The Attribute name must start with letter and only contain letters, numbers and underscores.
+  The Attribute type can be a string, float, int (integer), list, dictionary or bool (boolean).
+  Attributes must be separated with a comma and a change of line (newline).
+  Dictionary attributes must be indented with a single tab.
+  For all types except dictionaries, you can declare attributes in the following form:
+  <br>
+  <code>
+    attribute_name_1: type_1,<br>
+    attribute_name_2: type_2,<br>
+    attribute_name_3: type_3
+  </code>
+  <br>
+  Dictionaries can be declared like the following example:
+  <br>
+  <code>
+  my_dictionary: {<br>
+      attribute_1: int,<br>
+      attribute_2: bool,<br>
+      attribute_3: {<br>
+          sub_attribute_1: bool<br>
+      }<br>
+  }
+  </code>
 </script>
