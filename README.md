@@ -7,12 +7,14 @@
 [![GitHub license](https://img.shields.io/github/license/CedArctic/node-red-contrib-ha-auto)](https://github.com/CedArctic/node-red-contrib-ha-auto/blob/main/LICENSE)
 
 ## Description
-This is the HA-Auto Node-RED integration package. It contains nodes for the Node-RED low code environment 
+This is the HA-Auto Node-RED integration package for [HA-Auto](https://github.com/eellak/gsoc2021-HA-Auto-Node-RED) users. 
+It contains nodes for the Node-RED low code environment 
 which can be used to set up and deploy Brokers, Entities and Automations. 
 Make sure to also check out [HA-Auto](https://github.com/eellak/gsoc2021-HA-Auto-Node-RED) to set up the complete project.
 
 ## Installation
-You can install the package from the Node-RED library, using npm or manually.
+After installing [HA-Auto](https://github.com/eellak/gsoc2021-HA-Auto-Node-RED), you can install the Node-RED integration
+package from the Node-RED library, using npm or manually.
 
 ### Node-RED Library
 You can install the package from the [Node-RED library](https://flows.nodered.org/node/node-red-contrib-ha-auto) by 
