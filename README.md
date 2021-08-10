@@ -1,5 +1,6 @@
 # node-red-contrib-ha-auto
 ![HA-Auto Logo](logo.png)
+
 [![Platform](https://img.shields.io/badge/platform-Node--RED-red)](https://nodered.org)
 [![GitHub tag](https://img.shields.io/github/tag/CedArctic/node-red-contrib-ha-auto.svg)](https://GitHub.com/CedArctic/node-red-contrib-ha-auto/tags/)
 [![NPM](https://img.shields.io/npm/v/node-red-contrib-ha-auto?logo=npm)](https://www.npmjs.org/package/node-red-contrib-ha-auto)
