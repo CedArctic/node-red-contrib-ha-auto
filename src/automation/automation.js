@@ -17,7 +17,6 @@ module.exports = function(RED) {
 
         // Parse Actions
         const actions_split = config.actions.split(",\n");
-//        console.log(actions_split);
         const actions_dict = {};
         actions_split.forEach(function(entry){
             // Split to attribute and value
@@ -25,29 +24,21 @@ module.exports = function(RED) {
             attribute = split[0];
             value = split[1];
 
-            // TODO: Probably do type parsing on value. I.E: convert "true" string to true bool type. Not needed for now
+            // TODO: In the future, value parsing can be implemented, e.g to convert "true" string to true bool type.
+            // Not needed for now
 
             // Add to state["automations"][this.name]["actions"]
             state["automations"][node.name]["actions"][attribute] = value;
         })
 
-        //console.log("Initial State", state);
         // Register input event action to process message
         this.on('input', function(msg, send, done){
-            //console.log("State", state);
-            //console.log("Message", msg);
-
             /*
                 TODO: In the future at this point some validation can be implemented. E.g: Check if the Automation's
                 Actions involve connected entities and if their types are correct.
             */
-
             // Update the state variable and then assign it to the msg variable
-//            console.log("State", state);
-//            console.log("Message", msg);
-//            state = Object.assign(state, msg);
             state = utils.mergeDeep(state, msg);
-//            msg = state;
             // Send the message
             //console.log("Final Message", msg);
             send(state);

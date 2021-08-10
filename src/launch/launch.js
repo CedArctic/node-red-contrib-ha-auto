@@ -16,7 +16,6 @@ module.exports = function(RED) {
         // State object. Used to merge all incoming messages (Broker and Attributes) for this Entity
         let state = {automations: {}, entities: {}, brokers: {}};
 
-        //console.log("Initial State", state);
         // Register input event action to process message
         this.on('input', function(msg, send, done){
 
@@ -130,8 +129,6 @@ module.exports = function(RED) {
                   // Close connection
                   client.end();
                 })
-
-
             }
 
         }, initTimeout);
