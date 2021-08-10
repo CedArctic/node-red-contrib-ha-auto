@@ -1,5 +1,6 @@
 # node-red-contrib-ha-auto
 ![HA-Auto Logo](logo.png)
+
 [![GitHub license](https://img.shields.io/github/license/CedArctic/node-red-contrib-ha-auto)](https://github.com/CedArctic/node-red-contrib-ha-auto/blob/main/LICENSE)
 [![GitHub tag](https://img.shields.io/github/tag/CedArctic/node-red-contrib-ha-auto.svg)](https://GitHub.com/CedArctic/node-red-contrib-ha-auto/tags/)
 
