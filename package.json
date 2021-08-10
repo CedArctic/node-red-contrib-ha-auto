@@ -17,7 +17,6 @@
   "node-red": {
     "nodes": {
       "broker": "src/broker/broker.js",
-      "attribute": "src/attribute/attribute.js",
       "entity": "src/entity/entity.js",
       "automation": "src/automation/automation.js",
       "launch": "src/launch/launch.js"
