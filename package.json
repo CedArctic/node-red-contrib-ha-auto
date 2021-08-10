@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "HA-Auto Node-RED integration.",
   "homepage": "https://github.com/CedArctic/node-red-contrib-ha-auto/",
-  "main": "index.js",
   "repository": "github:CedArctic/node-red-contrib-ha-auto",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
