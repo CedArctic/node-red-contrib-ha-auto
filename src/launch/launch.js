@@ -48,6 +48,7 @@ module.exports = function(RED) {
                 // AMQP additions
                 if (broker.b_type === "amqp" && broker.exchange != "") {
                     model = model + `\texchange: \"${broker.exchange}\"\n`;
+                    model = model + `\tvhost: \"${broker.vhost}\"\n`;
                 }
 
                 // Redis additions

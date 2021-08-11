@@ -48,6 +48,10 @@
       exchange:{
         // AMQP Exchange String
         value: "",
+      },
+      vhost:{
+        // AMQP Vhost String
+        value: "",
       }
     },
     inputs:0,
@@ -93,12 +97,16 @@
     <input type="password" id="node-input-password" placeholder="Password">
   </div>
   <div class="form-row">
-    <label for="node-input-db"><i class="fa fa-tag"></i> Redis DB Number (Optional)</label>
-    <input type="number" id="node-input-db" placeholder="0" min="0" step="1">
+    <label for="node-input-vhost"><i class="fa fa-tag"></i> AMQP Vhost (AMQP Only)</label>
+    <input type="text" id="node-input-vhost" placeholder="AMQP Vhost">
   </div>
   <div class="form-row">
     <label for="node-input-exchange"><i class="fa fa-tag"></i> AMQP Exchange (Optional)</label>
     <input type="text" id="node-input-exchange" placeholder="AMQP Exchange">
+  </div>
+  <div class="form-row">
+    <label for="node-input-db"><i class="fa fa-tag"></i> Redis DB Number (Optional)</label>
+    <input type="number" id="node-input-db" placeholder="0" min="0" step="1">
   </div>
 </script>
 
@@ -118,9 +126,10 @@
     <li><b>Type:</b> The type of Broker. HA-Auto supports AMQP, MQTT and Redis Brokers.</li>
     <li><b>Username:</b> Username for authentication when connecting to the Broker.</li>
     <li><b>Password:</b> Password for authentication when connecting to the Broker.</li>
-    <li><b>Redis DB Number (Optional):</b> The Redis database number. Used only if you selected Redis as the Broker
-      Type</li>
+    <li><b>AMQP Vhost (AMQP Only):</b> Virtual Host parameter. Used only if you selected AMQP as the Broker Type.</li>
     <li><b>AMQP Exchange (Optional):</b> The AMQP Exchange String. Used only if you selected AMQP as the Broker
       Type.</li>
+    <li><b>Redis DB Number (Redis Optional):</b> The Redis database number. Used only if you selected Redis as the
+      Broker Type</li>
   </ul>
 </script>

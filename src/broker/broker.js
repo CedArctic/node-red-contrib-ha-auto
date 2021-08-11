@@ -18,7 +18,8 @@ module.exports = function(RED) {
             username: config.username,
             password: config.password,
             db: config.db,
-            exchange: config.exchange
+            exchange: config.exchange,
+            vhost: config.vhost
         }
         // Send message after initial delay
         setTimeout(() => node.send(msg), initTimeout);
